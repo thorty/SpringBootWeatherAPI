@@ -4,21 +4,22 @@ import java.io.IOException;
 
 import javax.naming.AuthenticationException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.web.client.ResponseErrorHandler;
 
 public class WeatherResponseErrorHandler implements ResponseErrorHandler {
-	  
+	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());		
+	
 	@Override
-	  public void handleError(ClientHttpResponse response) throws IOException {	    
-		  System.out.println("Error Happend");
-		   {
-		        throw new WeatherWebserviceException(response.getStatusText() + " calling weather webservice", response.getStatusCode(), true);
-		    }
-
-	    
+	  public void handleError(ClientHttpResponse response) throws IOException {
+		
+			logger.error("Error Happend during weather service call " +response.getStatusCode().toString() +" " +response.getStatusText() );		   			  
+		    // throw new WeatherWebserviceException(response.getStatusText() + " calling weather webservice", response.getStatusCode());	    
 	  }
 
 	  @Override

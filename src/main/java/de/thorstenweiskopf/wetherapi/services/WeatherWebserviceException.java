@@ -8,13 +8,12 @@ public class WeatherWebserviceException extends RuntimeException {
 
 	String message;
 	HttpStatus httpStatus;
-	boolean isError = true;
+
 	
-	public WeatherWebserviceException(String msg, HttpStatus httpCode, boolean isError) {
+	public WeatherWebserviceException(String msg, HttpStatus httpCode) {
 		super();
 		this.message = msg;
 		this.httpStatus = httpCode;
-		this.isError = isError;
 	}
 	public String getMessage() {
 		return message;
@@ -28,13 +27,7 @@ public class WeatherWebserviceException extends RuntimeException {
 	public void setCode(int code) {
 		this.httpStatus = httpStatus;
 	}
-	public boolean isError() {
-		return isError;
-	}
-	public void setError(boolean isError) {
-		this.isError = isError;
-	}
-	
+
 	
 	
 	

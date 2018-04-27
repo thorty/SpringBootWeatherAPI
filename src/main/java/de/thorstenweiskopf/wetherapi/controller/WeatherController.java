@@ -1,5 +1,7 @@
 package de.thorstenweiskopf.wetherapi.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +15,7 @@ import de.thorstenweiskopf.wetherapi.services.WeatherWebserviceClient;
 @RestController
 public class WeatherController {
 
-		
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());		
 	WeatherWebserviceClient wsClient;
 	
     @Autowired    
@@ -26,16 +28,15 @@ public class WeatherController {
 	 @RequestMapping(value ="/weather/Neustadt", method = RequestMethod.GET)
 	    public WeatherInfo home(){
 		 	WeatherInfo info = wsClient.getData();
-		 	if (info == null) {
-		 		return new WeatherInfo();
-		 	}
 		 	return info;
 	    }
 
 	 @RequestMapping(value ="/weather/", method = RequestMethod.POST )
 		 public WeatherInfo callWeatherStation(@RequestBody String location) {
-		   System.out.println("POST Param = "+location);
-		   return wsClient.getData(location);
+		 logger.info("Request for /weather/ with POST. Param = "+location);
+		 WeatherInfo info = wsClient.getData(location);
+		 logger.info("Response = "+info.toString());
+		 return info;
 	 }
 	 
 	 
