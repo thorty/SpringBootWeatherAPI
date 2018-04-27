@@ -42,9 +42,9 @@ public class WeatherController {
 	 
 	 
 	 
-	 //ToDo: Exception Handling
-	 //ToDo: Deployment
-	 //ToDo: Logging
+	 //ToDo: Deployment or Tomcat Configuration
+	 //ToDo: AccessLog
+	 //ToDo: AdminTools (Monitoring,..)
 	 
 	 
 	 
